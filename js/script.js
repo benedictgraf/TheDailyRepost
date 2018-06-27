@@ -1,3 +1,6 @@
+//Change all var to let
+//Change forLoops to for of
+
 var invRef = database.ref('innovation');
 var desRef = database.ref('design');
 var tecRef = database.ref('tech');
