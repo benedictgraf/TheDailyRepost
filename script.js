@@ -1,64 +1,72 @@
+var invRef = database.ref('innovation');
+var desRef = database.ref('design');
+var tecRef = database.ref('tech');
+var worRef = database.ref('work');
 
-//create firebase reference
-var dbRef = new Firebase("https://ng-fire-try.firebaseio.com/");
-var invRef = dbRef.child('innovation');
-var desRef = dbRef.child('design');
-var tecRef = dbRef.child('tech');
-var worRef = dbRef.child('work');
+var ref = [invRef, desRef, tecRef, worRef];
+for(var j = 0; j < ref.length; j++)
 
-/*invRef.on("child_added", function(snapshot, prevChildKey) {
-  var newPost = snapshot.val();
-  console.log("name: " + newPost.name);
-  console.log("mail: " + newPost.mail);
-});
-*/
-//Auth
-//get elements
-var txtEmail = document.getElementById('txtEmail');
-var txtPassword = document.getElementById('txtPassword');
-var btnlogin = document.getElementById('btnlogin');
-var btnsignin = document.getElementById('btnsignin');
-var btnlogout = document.getElementById('btnlogout');
+ref[j].limitToLast(20).on('child_added', function(snap) {
+  //console.log(snapshot.val());
+snap.forEach(function (childSnapshot) {
+  var childData = childSnapshot.val();
+  var card = document.createElement('div');
+  card.setAttribute('class', 'linkprev');
+  card.setAttribute('data-aos', 'fade-up');
+  $('#content').prepend($(card));
 
-btnlogin.addEventListener("click", e => {
-  var email = txtEmail.value;
-  var pass = txtPassword.value;
-  var auth = firebase.auth();
-  //signin
-  var promise = auth.signInWithEmailAndPassword(email, pass);
-  promise.catch(e => console.log(e.message));
-});
+  var cardtitle = document.createElement('div');
+  cardtitle.setAttribute('class', 'cardtitle');
+  cardtitle.innerHTML = childData;
+  card.appendChild(cardtitle);
 
-
-
-
-//load all contacts (limited to last 20 items)
-var allRef = [invRef, desRef, tecRef, worRef];
-
-for(var j = 0; j < allRef.length; j++)
-
-allRef[j].limitToLast(20).on("child_added", function (snap) {
-    snap.forEach(function (childSnapshot) {
-    var key = childSnapshot.key();
-    var childData = childSnapshot.val();
-    //console.log(childData);
-    //var y = key['mail'];
-    //console.log(y);
-    //create divs from database-elements
-    var card = document.createElement('div');
-    card.setAttribute('class', 'linkprev');
-    $('#content').prepend($(card));
-
-    var cardtitle = document.createElement('div');
-    cardtitle.setAttribute('class', 'cardtitle');
-    cardtitle.innerHTML = childData;
-    card.appendChild(cardtitle);
   });
- // $(document).ready(function () {
+  $(document).ready(function () {
     document.guteUrls.execute('linkprev');
   });
 });
 
+var txtEmail = document.getElementById('txtEmail');
+var txtPassword = document.getElementById('txtPassword');
+var btnLogin = document.getElementById('btnlogin');
+var btnLogout = document.getElementById('btnlogout');
+var btnSignUp = document.getElementById('btnsignup');
+
+btnLogin.addEventListener('click', e => {
+  //get email and pass
+  var email = txtEmail.value;
+  var pass = txtPassword.value;
+  var auth = firebase.auth();
+  //log-in
+  var promise = auth.signInWithEmailAndPassword(email, pass);
+  promise.catch(e = console.log('log-in user'));
+});
+
+  //Add sign-up event
+  btnSignUp.addEventListener('click', e=> {
+    //get email and pass
+    //TODO: Validate E-Mail
+  var email = txtEmail.value;
+  var pass = txtPassword.value;
+  var auth = firebase.auth();
+  //log-in
+  var promise = auth.createUserWithEmailAndPassword(email, pass);
+  promise.catch(e = console.log('creating user')); 
+  });
+
+  //Add realtime listener
+  firebase.auth().onAuthStateChanged(firebaseUser => {
+    if(firebaseUser){console.log('Auth State Changed');
+    btnLogout.style.removeProperty('display:none');
+    $('.btnLogout').attr("style", "display:normal;");
+    }
+    else{console.log('not logged in/Auth State Changed');    
+  }
+  });
+
+  btnLogout.addEventListener('click', e=>{
+    firebase.auth().signOut();
+  });
 
 function funcShow(_btn) {
   var ov = $("#Overlay");
@@ -122,7 +130,7 @@ function add() {
 };
 
 function add2() {
-  var val = valpattern.test(valselect.value);
+  var val = valpattern.test(valselect.value) && mailpattern.test(mailvalselect.value);
   //save in database contacts
   if (buttonPressed && val && document.querySelector(".f2")) {
     desRef.push({name: document.querySelector('#url').value, mail: document.querySelector('#mail').value})
@@ -158,3 +166,8 @@ function add4() {
 };
 
 for (var i = 0; i < elements.length; i++) { elements[i].addEventListener("click", buttonPressed, false); }
+
+//Animation on scroll initialization
+AOS.init({
+  easing: 'ease-in-out-sine'
+});

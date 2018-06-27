@@ -1,78 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-<title>frontendpublishing-test</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>the daily repost</title>
+
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!-- Include Firebase Library -->
-<script src="https://cdn.firebase.com/js/client/2.2.3/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-auth.js"></script>
+<script>
+  var config = {
+  apiKey: "AIzaSyBGaGn59rKsysq70pgjtHCGEOn6g7dcLLo",
+  authDomain: "ng-fire-try.firebaseapp.com",
+  databaseURL: "https://ng-fire-try.firebaseio.com",
+  projectId: "ng-fire-try",
+  storageBucket: "ng-fire-try.appspot.com",
+  messagingSenderId: "197621554414"
+};
+firebase.initializeApp(config);
+var database = firebase.database();  
+</script>
+
 <!-- Linkpreview API -->
-<script async src="https://guteurls.de/guteurls.js"
+<script 
+async src="https://guteurls.de/guteurls.js"
 selector='.linkprev'
 gif="http://loading.io/assets/img/default-loader.gif">
 </script>
+
 <!--material-design lib-->
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
 <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-    
 
-<!--
-<script src="jquery.colorbox.js"></script>
-<link rel="stylesheet" href="colorbox.css"/>
--->
-<link rel="stylesheet" href="style.css" type="text/css" media="screen" />    
+<!--AOSlib-->
+<link href="css/aos.css" rel="stylesheet">
+<script src="js/aos.js"></script>
 
-<input id="txtEmail" type="email" placeholder="Email">
-<input id="txtPassword" type="password" placeholder="Password">
+<!--Document stylesheet-->
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />   
 
-        <button id="btnlogin">login</button>
-
-        <button id="btnsignin">sign-in</button>
-
-        <button id="btnlogout" style="display:none;">log-out</button>
-
-<button "id="show" class="show mdl-button mdl-js-button mdl-button--fab" onclick="funcShow(this); + funcHide(this);">
-  <i class="material-icons">add</i>
-</button>
 </head>
-
 <body>
-
-  <div id="Overlay" name="Overlay" class="overlay">
-      
-          <!-- Textfield with Floating Label -->
-          <form action="#" method="post" name="contactForm" id="form" autocomplete="off">
-          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <input class="mdl-textfield__input" id="url" type="url" required name="url" class="input" value="">
-          <label class="mdl-textfield__label" for="sample3">Share a great post...</label>
-          </div>
-          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" id="mail" type="url" required name="url" class="input" value="">
-            <label class="mdl-textfield__label" for="sample3">Enter your E-mail...</label>
+    <!--Authentification formular-->
+    <div id="authfield">
+    <div class="authcontent">
+        <h5>Hey, welcome to daily repost</h5>    
+        <div class="msg">Please log-in or create an account</div>
+    <!-- Simple Textfield -->
+    <form action="#">
+        <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text" id="txtEmail" placeholder="e-mail">
+        </div>
+      </form>
+       <!-- Simple Textfield -->
+    <form action="#">
+            <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="password" id="txtPassword" placeholder="password">
             </div>
           </form>
-          <div class="category">
-          <button id="button" class="f f1" onclick="add();" >innovation</button>
-          <button id="button" class="f f2" onclick="add2();">design</button>
-          <button id="button" class="f f3" onclick="add3();">tech</button>
-          <button id="button" class="f f4" onclick="add4();">work</button>
-          </div><!--/category-->
-          
-          
-  <!--<div id="close" class="close" onclick="funcClose(this);">X</div>-->
-  </div><!--/Overlay-->
+          <!-- Raised button with ripple -->
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="btnlogin">
+            Log-in </button>
+            <button id="btnsignup" class="txtbutton">Create a new account with this credentials</button>
+            
+    </div><!--/authcontent-->
+    </div><!--/authfield-->
+     <!-- Raised button with ripple -->
+     <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="btnlogout">
+            Log-out </button>
 
-  
+    <!--Addbutton for new posts-->
+    <button "id="show" class="show mdl-button mdl-js-button mdl-button--fab" onclick="funcShow(this); + funcHide(this);">
+    <i class="material-icons">add</i>
+    </button>
+    
+    <!--/Inputfield for new posts-->    
+    <div id="Overlay" name="Overlay" class="overlay">
+    <div id="inputwrapper">
+    <div id="close" class="close" onclick="funcClose(this);">X</div> 
+    <!-- Textfield with Floating Label Materialdesign-->         
+            
+    <form action="#" method="post" name="contactForm" id="form" autocomplete="off">
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" id="url" type="url" required name="url" class="input" value="">
+    <label class="mdl-textfield__label" for="sample3">Share a great post...</label>
+    </div>
+    </form>
+     <div class="category">
+     <button id="button" class="f f1" onclick="add();" >innovation</button>
+     <button id="button" class="f f2" onclick="add2();">design</button>
+     <button id="button" class="f f3" onclick="add3();">tech</button>
+     <button id="button" class="f f4" onclick="add4();">work</button>
+     </div><!--/category-->
+    </div>
+          
+    </div><!--/Overlay-->
 <!--
   <button id="btntest" onclick = "displayLoginBox()">check</button>
 -->
-  <div id="content" class="listcontent">
-  </div>  
+  <div id="content" class="listcontent inactiveLink">
+  </div>    
+  
 
 <!-- Contacts Store JavaScript -->
-<script src="script.js"></script>   
- 
+<script src="js/script.js"></script>   
+<script src="js/signupform.js"></script>   
+
+
+
 </body>
 </html>
+<!--
+    <div class="canvasDiv">
+        <canvas id="canvas"></canvas>
+        </div>
+    -->

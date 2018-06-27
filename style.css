@@ -3,6 +3,10 @@
     cursor: pointer;
 }
 
+.cardtitle {
+    text-align: center;
+}
+
 #button {
 background: none;
 border: 0px;
@@ -56,6 +60,10 @@ h2 {font-size: 2em;
 
 .mdl-textfield {display:flex;
             margin-left: 40%;}
+
+.btnlogout {display:none;}
+
+
 
 /*.linkprev {
     display:flex;
