@@ -12,33 +12,58 @@
 selector='.linkprev'
 gif="http://loading.io/assets/img/default-loader.gif">
 </script>
+<!--material-design lib-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     
 
 <!--
 <script src="jquery.colorbox.js"></script>
 <link rel="stylesheet" href="colorbox.css"/>
 -->
-<link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="style.css" type="text/css" media="screen" />    
+
+<input id="txtEmail" type="email" placeholder="Email">
+<input id="txtPassword" type="password" placeholder="Password">
+
+        <button id="btnlogin">login</button>
+
+        <button id="btnsignin">sign-in</button>
+
+        <button id="btnlogout" style="display:none;">log-out</button>
+
+<button "id="show" class="show mdl-button mdl-js-button mdl-button--fab" onclick="funcShow(this); + funcHide(this);">
+  <i class="material-icons">add</i>
+</button>
 </head>
 
 <body>
+
   <div id="Overlay" name="Overlay" class="overlay">
       
-          <form method="post" name="contactForm" id="form" autocomplete="off">
-          <input id="url" type="url" required name="url" placeholder="share a good article/blog/topic" class="input" value=""></input>
+          <!-- Textfield with Floating Label -->
+          <form action="#" method="post" name="contactForm" id="form" autocomplete="off">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" id="url" type="url" required name="url" class="input" value="">
+          <label class="mdl-textfield__label" for="sample3">Share a great post...</label>
+          </div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" id="mail" type="url" required name="url" class="input" value="">
+            <label class="mdl-textfield__label" for="sample3">Enter your E-mail...</label>
+            </div>
           </form>
-          <div class="category" onclick="funcClose(this);">
-          <button id="button" class="f f1" >innovation</button>
-          <button id="button" class="f f2" >design</button>
-          <button id="button" class="f f3" >tech</button>
-          <button id="button" class="f f4" >work</button>
+          <div class="category">
+          <button id="button" class="f f1" onclick="add();" >innovation</button>
+          <button id="button" class="f f2" onclick="add2();">design</button>
+          <button id="button" class="f f3" onclick="add3();">tech</button>
+          <button id="button" class="f f4" onclick="add4();">work</button>
           </div><!--/category-->
-
+          
+          
   <!--<div id="close" class="close" onclick="funcClose(this);">X</div>-->
   </div><!--/Overlay-->
-  <div id="show" class="show" onclick="funcShow(this);">
-  </div><!--/show-->
-    
+
   
 <!--
   <button id="btntest" onclick = "displayLoginBox()">check</button>
