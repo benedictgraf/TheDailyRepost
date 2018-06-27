@@ -1,204 +1,81 @@
 <!DOCTYPE html>
-<html manifest="cache.appcache" lang="en">
-<!--Webapp manifest-->
-<link rel="manifest" href="webapp/manifest.json">    
-<script src="https://cdn.rawgit.com/GoogleChrome/pwacompat/v1.0.3/pwacompat.min.js"></script>
-
-<!--Caching manifest-->
- 
-
-<script>
-window.applicationCache.update(); // versucht, den Application Chache aufzufrischen
-window.applicationCache.status    // Aufgefrischt?
-window.applicationCache.swapCache // neuen Cache einspielen
-</script>
-
+<html lang="en">
 <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>frontendpublishing-test</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://cdn.embed.ly/jquery.preview-0.3.2.css" />
+    <link href="css/flexboxgrid.min.css" rel="stylesheet">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>the daily repost</title>
-
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
-<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-auth.js"></script>
-<script>
-  var config = {
-  apiKey: "AIzaSyBGaGn59rKsysq70pgjtHCGEOn6g7dcLLo",
-  authDomain: "ng-fire-try.firebaseapp.com",
-  databaseURL: "https://ng-fire-try.firebaseio.com",
-  projectId: "ng-fire-try",
-  storageBucket: "ng-fire-try.appspot.com",
-  messagingSenderId: "197621554414"
-};
-firebase.initializeApp(config);
-var database = firebase.database();  
-</script>
-
-<!-- Linkpreview API -->
-<script 
-async src="https://guteurls.de/guteurls.js"
-selector='.linkprev'
-gif="http://loading.io/assets/img/default-loader.gif">
-</script>
-
-<!--material-design lib-->
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-
-<!--AOSlib-->
-<link href="css/aos.css" rel="stylesheet">
-<script src="js/aos.js"></script>
-
-<!--Document stylesheet-->
-<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />   
-<div id="loader-wrapper">
-    <div id="loader"></div>
-
-<!--Loadinganimation on entering-->
-    <div class="loader-section section-left"></div>
-    <div class="loader-section section-right"></div>
-    </div>
- 
-<!--AddToHomeScreen IOS-->
-<script src="js/addtohomescreen.js"></script>
-<script src="js/addtohomescreen.min.js"></script>
-<link rel="stylesheet" type="text/css" href="css/addtohomescreen.css">
-
-<script>
-    addToHomescreen();
-    </script>
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
+    
 
 </head>
-
-<body>  
-    <!--Authentification formular-->
-    <div id="authfield">
-    <div class="authcontent">
-        <h5>Hey, welcome to daily repost</h5>    
-        <div class="msg">Please log-in or create an account</div>
-
-        <form action="#">
-        <div class="mdl-textfield mdl-js-textfield">
-        <input class="mdl-textfield__input" type="text" id="txtEmail" placeholder="e-mail">
-        </div>
-      </form>
-
-      <form action="#">
-            <div class="mdl-textfield mdl-js-textfield">
-            <input class="mdl-textfield__input" type="password" id="txtPassword" placeholder="password">
-            </div>
+<body>
+  <div class="container">
+  <!--  <h1>The Daily Repost</h1>
+    <h2>tech-, design-, innovationjournal</h2> -->
+    <hr/>
+    <div class="row">
+      <div class="col-sm-10">
+        <form method="post" name="contactForm">
+          <div class="form-group">               
+            <input id="url" type="url" required name="url" placeholder="share a good article/blog/topic" class="input">
+            <button type="submit" class="btn btn-primary addValue">add</button>
           </form>
+          <div class="boxes">
+          <input type="checkbox" class="filter" id="f1">filter1</input>
+          <input type="checkbox" class="filter" id="f2">filter2</input>
+          <input type="checkbox" class="filter" id="f3">filter3</input>
+          <input type="checkbox" class="filter" id="f4">filter4</input>
+          </div>
 
-          <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="btnlogin">
-            Log-in </button>
-            <button id="btnsignup" class="txtbutton">Create a new account with this credentials</button>
-            
-    </div><!--/authcontent-->
-    </div><!--/authfield-->
+          <div class="dspbtn">
+              <button id="btntest" onclick = "displayLoginBox()">check</button>
 
-    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="btnlogout">
-      Log-out </button>
+          </div>
 
-    <!--Addbutton for new posts-->
-    <button id="show" class="show mdl-button mdl-js-button mdl-button--fab" onclick="funcShow(this); + funcHide(this);">
-    <i class="material-icons">add</i>
-    </button>
-
-    
-    <!--/Inputfield for new posts-->    
-    <div id="Overlay" name="Overlay" class="overlay">
-    <div id="inputwrapper">
-    <div id="close" class="close" onclick="funcClose(this);">X</div> 
-    <!-- Textfield with Floating Label Materialdesign-->         
-            
-    <form action="#" method="post" name="contactForm" id="form" autocomplete="off">
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    <input class="mdl-textfield__input" id="url" type="url" required name="url" class="input" value="">
-    <label class="mdl-textfield__label" for="sample3">Share a great post...</label>
-    </div>
-    </form>
-     <div class="category">
-     <button id="button" class="f f1" >innovation</button>
-     <button id="button" class="f f2" >design</button>
-     <button id="button" class="f f3" >tech</button>
-     <button id="button" class="f f4" >work</button>
-     </div><!--/category-->
-    </div>
-    
-          
-    </div><!--/Overlay-->
-<!--<button id="btntest" onclick = "displayLoginBox()">check</button>-->
-  <div id="content" class="listcontent inactiveLink">
-  </div>    
-   
-  <iframe name="myframe" id="mess" src="newSrc">frame frame frame frame fram</iframe>
-
-<!-- Contacts Store JavaScript -->
-<script src="js/script.js"></script>   
-<script src="js/signupform.js"></script>   
-
-
-
-</body>
-
-<!--Service-worker script-->
-
-
-<script>
-    /*if ('serviceWorker' in navigator) {
-      console.log("Will the service worker register?");
-      navigator.serviceWorker.register('service-worker.js')
-        .then(function(reg){
-          console.log("Yes, it did.");
-        }).catch(function(err) {
-          console.log("No it didn't. This happened: ", err)
-        });
-    }*/
-    if ('serviceWorker' in navigator) {
-    navigator.serviceWorker
-             .register('./service-worker.js')
-             .then(function() { console.log('Service Worker Registered'); });
-  }
-
-  var cacheName = 'weatherPWA-step-6-1';
-var filesToCache = [];
-
-self.addEventListener('install', function(e) {
-  console.log('[ServiceWorker] Install');
-  e.waitUntil(
-    caches.open(cacheName).then(function(cache) {
-      console.log('[ServiceWorker] Caching app shell');
-      return cache.addAll(filesToCache);
-    })
-  );
-});
-self.addEventListener('activate', function(e) {
-  console.log('[ServiceWorker] Activate');
-  e.waitUntil(
-    caches.keys().then(function(keyList) {
-      return Promise.all(keyList.map(function(key) {
-        if (key !== cacheName) {
-          console.log('[ServiceWorker] Removing old cache', key);
-          return caches.delete(key);
-        }
-      }));
-    })
-  );
-  return self.clients.claim();
-});
-var filesToCache = [
-  '/',
-  '/index.html',
-  'css/style.css',
-  'css/aos.css'
-];
-  </script>
-
-</html>
-<!--
-    <div class="canvasDiv">
-        <canvas id="canvas"></canvas>
         </div>
-    -->
+    </div>
+  </div>
+  <div id="content-list">
+  </div>
+
+        
+  
+
+<!--  <script>
+    $document.ready(function){
+      document.getElementsByClassName('linkified');
+      {console.log("linkified")};
+
+    };
+          </script>
+-->
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- Latest compiled and minified Bootstrap -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <!-- Include Firebase Library -->
+  <script src="https://cdn.firebase.com/js/client/2.2.3/firebase.js"></script>
+  <!-- Contacts Store JavaScript -->
+  <script src="script.js"></script>
+  
+  <link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+  
+
+  <script async src="https://guteurls.de/guteurls.js"
+  
+  selector='.linkprev'
+  gif="http://loading.io/assets/img/default-loader.gif"
+  document.guteUrls.execute('');
+  
+  ></script>
+    
+</body>
+</html>

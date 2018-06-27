@@ -1,0 +1,60 @@
+.card {
+max-width: 100px;
+max-height: 100px;
+background-color:blue;
+text-color: white;
+}
+
+.linkified {font-size: 20px;
+}
+
+#all {background:red;}
+#tec {background:green;}
+#des {background:yellow;}
+#wor {background:#3C0AF7;}
+
+.form-group{
+    position: relative;
+    text-align: center; 
+    margin:3em;   
+}
+
+.input {width: 30em;
+        height: 3em;
+        background:rgb(177, 177, 177);}
+
+
+        .input:focus {width: 30em;
+            height: 3em;
+            background:rgb(255, 255, 255);}
+    
+
+.btn {background:rgb(177, 177, 177);
+        border:0;
+        border-radius:0;
+        height: 3em;}
+
+
+.boxes {
+    position: relative;
+}
+
+.f1, .f2, .f3, .f4{
+    display:flex;
+    position: absolute;
+    flex-direction: row;
+}
+
+h1 {font-family: 'Abril Fatface', cursive;
+    font-size: 6em;
+    text-align: center;}
+
+h2 {font-size: 2em;
+    text-align: center;}
+
+/*.linkprev {
+    display:flex;
+    flex-direction: column-reverse;
+    padding:2%;  }
+*/
+/*#div0 {background: red;}*/
