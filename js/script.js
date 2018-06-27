@@ -7,7 +7,7 @@ var tecRef = database.ref('tech');
 var worRef = database.ref('work');
 var ref = [invRef, desRef, tecRef, worRef];
 for(var j = 0; j < ref.length; j++)
-TESTTEST
+
 ref[j].limitToLast(20).on('child_added', function(snap) {
   //console.log(snapshot.val());
 snap.forEach(function (childSnapshot) {
