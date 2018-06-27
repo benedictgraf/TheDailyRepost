@@ -12,6 +12,8 @@
 selector='.linkprev'
 gif="http://loading.io/assets/img/default-loader.gif">
 </script>
+    
+
 <!--
 <script src="jquery.colorbox.js"></script>
 <link rel="stylesheet" href="colorbox.css"/>
@@ -20,25 +22,32 @@ gif="http://loading.io/assets/img/default-loader.gif">
 </head>
 
 <body>
-  <form method="post" name="contactForm" id="form" autocomplete="off">
-  <input id="url" type="url" required name="url" placeholder="share a good article/blog/topic" class="input" value=""></input>
-  <button type="submit" class="btn btn-primary addValue">add</button>
-  </form>
-  <div class="boxes">
-  <input type="checkbox" class="filter" id="f1">filter1</input>
-  <input type="checkbox" class="filter" id="f2">filter2</input>
-  <input type="checkbox" class="filter" id="f3">filter3</input>
-  <input type="checkbox" class="filter" id="f4">filter4</input>
-  </div><!--/form-->  
+  <div id="Overlay" name="Overlay" class="overlay">
+      
+          <form method="post" name="contactForm" id="form" autocomplete="off">
+          <input id="url" type="url" required name="url" placeholder="share a good article/blog/topic" class="input" value=""></input>
+          </form>
+          <div class="category" onclick="funcClose(this);">
+          <button id="button" class="f f1" >innovation</button>
+          <button id="button" class="f f2" >design</button>
+          <button id="button" class="f f3" >tech</button>
+          <button id="button" class="f f4" >work</button>
+          </div><!--/category-->
 
+  <!--<div id="close" class="close" onclick="funcClose(this);">X</div>-->
+  </div><!--/Overlay-->
+  <div id="show" class="show" onclick="funcShow(this);">
+  </div><!--/show-->
+    
+  
 <!--
   <button id="btntest" onclick = "displayLoginBox()">check</button>
 -->
-  <div id="content">
+  <div id="content" class="listcontent">
   </div>  
 
-
 <!-- Contacts Store JavaScript -->
-<script src="script.js"></script>    
+<script src="script.js"></script>   
+ 
 </body>
 </html>

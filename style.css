@@ -1,42 +1,51 @@
-.card {
-max-width: 100px;
-max-height: 100px;
-background-color:blue;
-text-color: white;
+.category {
+    text-align:center;
+    margin-top:10px;
+    cursor: pointer;
 }
 
+#button {
+padding: 20px 15px;  
+background: none;
+border: 0px;
+    }
 
-#all {background:red;}
-#tec {background:green;}
-#des {background:yellow;}
-#wor {background:#3C0AF7;}
+#button:active {
+    font-weight: bold;
+    color: #B41616;
+    }
 
 #form, .boxes, #btntest{
     position: relative;
     text-align: center; 
 }
 
-.input {width: 30em;
-        height: 3em;
-        background:rgb(177, 177, 177);}
+.input {width: 70%;
+        margin: 0 auto;
+        overflow: hidden;
+        border: 0px;
+        background:#E0E0E0;}
 
 
-        .input:focus {width: 30em;
+        .input:focus {
             height: 3em;
-            background:rgb(255, 255, 255);}
+            background:#B8B8B8;}
+ 
+.overlay {
+background-color: #ffffff;
+color: #333;
+z-index: 400;
+margin-left:25%;
+display:none;}
+                
+.show {
+position: static;
+left: 70%;
+width:50px;
+height:50px;
+background-color:#9C9C9C;
+position:absolute;}          
     
-
-.btn {background:rgb(177, 177, 177);
-        border:0;
-        border-radius:0;
-        height: 3em;}
-
-
-.f1, .f2, .f3, .f4{
-    display:flex;
-    position: absolute;
-    flex-direction: row;
-}
 
 h1 {font-family: 'Abril Fatface', cursive;
     font-size: 6em;
@@ -44,6 +53,7 @@ h1 {font-family: 'Abril Fatface', cursive;
 
 h2 {font-size: 2em;
     text-align: center;}
+    
 
 /*.linkprev {
     display:flex;
@@ -51,4 +61,3 @@ h2 {font-size: 2em;
     padding:2%;  }
 */
 /*#div0 {background: red;}*/
-
