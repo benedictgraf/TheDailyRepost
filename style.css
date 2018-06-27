@@ -5,18 +5,15 @@ background-color:blue;
 text-color: white;
 }
 
-.linkified {font-size: 20px;
-}
 
 #all {background:red;}
 #tec {background:green;}
 #des {background:yellow;}
 #wor {background:#3C0AF7;}
 
-.form-group{
+#form, .boxes, #btntest{
     position: relative;
     text-align: center; 
-    margin:3em;   
 }
 
 .input {width: 30em;
@@ -34,10 +31,6 @@ text-color: white;
         border-radius:0;
         height: 3em;}
 
-
-.boxes {
-    position: relative;
-}
 
 .f1, .f2, .f3, .f4{
     display:flex;
@@ -58,3 +51,4 @@ h2 {font-size: 2em;
     padding:2%;  }
 */
 /*#div0 {background: red;}*/
+

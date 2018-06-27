@@ -1,81 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <title>frontendpublishing-test</title>
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://cdn.embed.ly/jquery.preview-0.3.2.css" />
-    <link href="css/flexboxgrid.min.css" rel="stylesheet">
-
-    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
-    
-
-</head>
-<body>
-  <div class="container">
-  <!--  <h1>The Daily Repost</h1>
-    <h2>tech-, design-, innovationjournal</h2> -->
-    <hr/>
-    <div class="row">
-      <div class="col-sm-10">
-        <form method="post" name="contactForm">
-          <div class="form-group">               
-            <input id="url" type="url" required name="url" placeholder="share a good article/blog/topic" class="input">
-            <button type="submit" class="btn btn-primary addValue">add</button>
-          </form>
-          <div class="boxes">
-          <input type="checkbox" class="filter" id="f1">filter1</input>
-          <input type="checkbox" class="filter" id="f2">filter2</input>
-          <input type="checkbox" class="filter" id="f3">filter3</input>
-          <input type="checkbox" class="filter" id="f4">filter4</input>
-          </div>
-
-          <div class="dspbtn">
-              <button id="btntest" onclick = "displayLoginBox()">check</button>
-
-          </div>
-
-        </div>
-    </div>
-  </div>
-  <div id="content-list">
-  </div>
-
-        
-  
-
-<!--  <script>
-    $document.ready(function){
-      document.getElementsByClassName('linkified');
-      {console.log("linkified")};
-
-    };
-          </script>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>frontendpublishing-test</title>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- Include Firebase Library -->
+<script src="https://cdn.firebase.com/js/client/2.2.3/firebase.js"></script>
+<!-- Linkpreview API -->
+<script async src="https://guteurls.de/guteurls.js"
+selector='.linkprev'
+gif="http://loading.io/assets/img/default-loader.gif">
+</script>
+<!--
+<script src="jquery.colorbox.js"></script>
+<link rel="stylesheet" href="colorbox.css"/>
 -->
+<link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+</head>
 
-  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <!-- Latest compiled and minified Bootstrap -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-  <!-- Include Firebase Library -->
-  <script src="https://cdn.firebase.com/js/client/2.2.3/firebase.js"></script>
-  <!-- Contacts Store JavaScript -->
-  <script src="script.js"></script>
-  
-  <link rel="stylesheet" href="style.css" type="text/css" media="screen" />
-  
+<body>
+  <form method="post" name="contactForm" id="form" autocomplete="off">
+  <input id="url" type="url" required name="url" placeholder="share a good article/blog/topic" class="input" value=""></input>
+  <button type="submit" class="btn btn-primary addValue">add</button>
+  </form>
+  <div class="boxes">
+  <input type="checkbox" class="filter" id="f1">filter1</input>
+  <input type="checkbox" class="filter" id="f2">filter2</input>
+  <input type="checkbox" class="filter" id="f3">filter3</input>
+  <input type="checkbox" class="filter" id="f4">filter4</input>
+  </div><!--/form-->  
 
-  <script async src="https://guteurls.de/guteurls.js"
-  
-  selector='.linkprev'
-  gif="http://loading.io/assets/img/default-loader.gif"
-  document.guteUrls.execute('');
-  
-  ></script>
-    
+<!--
+  <button id="btntest" onclick = "displayLoginBox()">check</button>
+-->
+  <div id="content">
+  </div>  
+
+
+<!-- Contacts Store JavaScript -->
+<script src="script.js"></script>    
 </body>
 </html>
