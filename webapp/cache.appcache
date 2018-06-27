@@ -1,0 +1,11 @@
+CACHE MANIFEST
+# 2010-06-18:v3
+
+# Explicitly cached entries
+index.html
+css/style.css
+
+# offline.html will be displayed if the user is offline
+FALLBACK:
+https://t3n.de/news/html5-application-cache-inhalte-390750/
+
