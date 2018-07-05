@@ -110,6 +110,14 @@ let mailpattern = new RegExp(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(
 let mailvalselect = document.getElementById('txtEmail');
 let mailval = mailpattern.test(mailvalselect.value); 
 
+/*
+//Test
+let output = "https://www.fastcompany.com/40590866/how-my-american-dream-is-different-from-my-parents";
+$.getJSON('http://www.whateverorigin.org/get?url=' + encodeURIComponent(output) + '&callback=?', function(data){
+	$('#output').html(data.contents);
+});
+*/
+
 //push data to specific location in firebase
 var push = function(j){j.push({name: document.querySelector('#url').value})
 };
@@ -133,6 +141,9 @@ contactForm.reset() + funcClose();}
 $(window).on('load', hideLoader = () => {
   console.log("loaded");
   $('#loader-wrapper').delay(1000).fadeOut("slow")});
+
+
+$("#output").click(alert("this"));
 
 
 //Animation on scroll initialization
