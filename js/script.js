@@ -111,12 +111,14 @@ let mailvalselect = document.getElementById('txtEmail');
 let mailval = mailpattern.test(mailvalselect.value); 
 
 /*
-//Test
-let output = "https://www.fastcompany.com/40590866/how-my-american-dream-is-different-from-my-parents";
+//Test for js web scraping…
+let output = "https://www.sitepoint.com/";
 $.getJSON('http://www.whateverorigin.org/get?url=' + encodeURIComponent(output) + '&callback=?', function(data){
 	$('#output').html(data.contents);
 });
 */
+
+$(".cardtitle").click(console.log(this));
 
 //push data to specific location in firebase
 var push = function(j){j.push({name: document.querySelector('#url').value})
@@ -141,10 +143,6 @@ contactForm.reset() + funcClose();}
 $(window).on('load', hideLoader = () => {
   console.log("loaded");
   $('#loader-wrapper').delay(1000).fadeOut("slow")});
-
-
-$("#output").click(alert("this"));
-
 
 //Animation on scroll initialization
 AOS.init({
