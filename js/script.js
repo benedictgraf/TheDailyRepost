@@ -113,52 +113,50 @@ let mailpattern = new RegExp(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(
 let mailvalselect = document.getElementById('txtEmail');
 let mailval = mailpattern.test(mailvalselect.value); 
 
-/*
-//Test for js web scraping…
-let output = "https://www.sitepoint.com/";
-$.getJSON('http://www.whateverorigin.org/get?url=' + encodeURIComponent(output) + '&callback=?', function(data){
-	$('#output').html(data.contents);
-});
-*/
-
 $(".cardtitle").click(console.log(this));
 
 //tags & tag-editor
-//this feature does not work, because of firebase don't supporting arrays
-//for each loop translates the tags array to single outputs
-//I am not sure how to insert the elements (which are logged to the console) into firebase…
-$('#tags').tagEditor({
-  initialTags: [],
-  placeholder: 'Enter a tag ...',
-  maxTags: 1,
-  onChange: function showTags(field, editor, tags) {
-      //let tagsChange = ('Tags changed to: ' + (tags.length ? tags.join(', ') : '----'));
-      //console.log(tagsChange);
-      tags.forEach(element => {console.log(element);
-    });
-  },
-  beforeTagSave: function(field, editor, tags, tag, val) {
-  console.log('Tag ' + val + ' saved' + (tag ? ' over ' + tag : '') + '.');
-  },
-  beforeTagDelete: function(field, editor, tags, val) {
-      var q = confirm('Remove tag "' + val + '"?');
-      if (q) console.log('Tag ' + val + ' deleted.');
-      else console.log('Removal of ' + val + ' discarded.');
-      return q;
-  },
+$(function(){
+  var sampleTags = ['c++', 'java', 'php', 'coldfusion', 'javascript', 'asp', 'ruby', 'python', 'c', 'scala', 'groovy', 'haskell', 'perl', 'erlang', 'apl', 'cobol', 'go', 'lua'];
+
+  $('#singleFieldTags').tagit({
+      availableTags: sampleTags,
+      // This will make Tag-it submit a single form value, as a comma-delimited field.
+      singleField: true,
+      singleFieldNode: $('#mySingleField')
+  });
+});
+
+var lists = document.getElementsByTagName("ul");
+for (var i = 0; i < lists.length; ++i) {
+    // filter so that only lists with the class "foo" are counted
+    console.log(lists[i]); 
+    var items = lists[i].getElementsByTagName("li");
+    console.log(items);
+        for (var j = 0; j < items.length; ++j) {
+            // do something with items[j]
+            console.log(j);
+        }
+    }
+
+    $('ul li').each(function(i)
+{
+   console.log($(this).value); // This is your rel value
 });
 
 //push data to specific location in firebase
-var push = function(j){j.push({name: document.querySelector('#url').value})
+var push = function(j){j.push({link: document.querySelector('#url').value})
 };
+
+console.log($('#singleFieldTags').tagit('assignedTags'));
 
 for(var y = 0; y < 5; y++) {
   $(".f" + y).click(function(id) {
     return function() {
       var dtcBtn = (id); 
       $("#button").click(console.log(dtcBtn));
-function push(Ref){Ref.push({link: document.querySelector('#url').value, tags: document.querySelector('#tags').value})
-contactForm.reset() + funcClose();}
+      function push(Ref){Ref.push({link: document.querySelector('#url').value})
+      contactForm.reset() + funcClose();}
       if(dtcBtn === 1){push(invRef)}
       else if(dtcBtn === 2){push(desRef)}
       else if(dtcBtn === 3){push(tecRef)}
