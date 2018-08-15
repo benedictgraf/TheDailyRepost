@@ -96,7 +96,7 @@ background-color:#9C9C9C;
     background: rgba(255,255,255,0.9);}
 
 h1 {font-family: 'Abril Fatface', cursive;
-    font-size: 6em;
+    font-size: 1.5em!important;
     text-align: center;}
 
 h2 {font-size: 2em;
@@ -105,12 +105,31 @@ h2 {font-size: 2em;
     
 #content {
     overflow: hidden;
-    margin-top:10%;
+    /*
     box-sizing: border-box;
     position: absolute;
     width: 100%;
+    */
+    margin-top:15%;
+    column-count: 4;
+    column-gap: 5em;
 }
 
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 568px) 
+and (orientation : portrait) {
+#content {
+    overflow: hidden;
+    box-sizing: border-box;
+    position: absolute;
+    width: 100%;
+    margin-top:15%;
+    column-count: 1;
+    column-gap: 0em;
+}
+}
 
 #inputwrapper {left: 50%;
             transform: translateX(-50%);
@@ -146,11 +165,16 @@ div.guteurlsBox {background: transparent;}
     cursor: default;
  }
 
-/*.linkprev {
+.linkprev {
+    /*
     display:flex;
     flex-direction: column-reverse;
-    padding:2%;  }
-*/
+    */
+    padding:5%;
+    background-color: #eee;
+    display: inline-block;
+    margin: 0 auto;
+    width: 100%;  }
 /*#div0 {background: red;}*/
 
 
