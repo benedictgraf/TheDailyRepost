@@ -1,5 +1,8 @@
-//Change all let to let
 //Change forLoops to for of
+//Hide loader when site is loaded
+$(window).on('load', hideLoader = () => {
+  console.log("loaded");
+  $('#loader-wrapper').delay(1000).fadeOut("slow")});
 
 let invRef = database.ref('innovation');
 let desRef = database.ref('design');
@@ -120,6 +123,31 @@ $.getJSON('http://www.whateverorigin.org/get?url=' + encodeURIComponent(output) 
 
 $(".cardtitle").click(console.log(this));
 
+//tags & tag-editor
+//this feature does not work, because of firebase don't supporting arrays
+//for each loop translates the tags array to single outputs
+//I am not sure how to insert the elements (which are logged to the console) into firebase…
+$('#tags').tagEditor({
+  initialTags: [],
+  placeholder: 'Enter a tag ...',
+  maxTags: 1,
+  onChange: function showTags(field, editor, tags) {
+      //let tagsChange = ('Tags changed to: ' + (tags.length ? tags.join(', ') : '----'));
+      //console.log(tagsChange);
+      tags.forEach(element => {console.log(element);
+    });
+  },
+  beforeTagSave: function(field, editor, tags, tag, val) {
+  console.log('Tag ' + val + ' saved' + (tag ? ' over ' + tag : '') + '.');
+  },
+  beforeTagDelete: function(field, editor, tags, val) {
+      var q = confirm('Remove tag "' + val + '"?');
+      if (q) console.log('Tag ' + val + ' deleted.');
+      else console.log('Removal of ' + val + ' discarded.');
+      return q;
+  },
+});
+
 //push data to specific location in firebase
 var push = function(j){j.push({name: document.querySelector('#url').value})
 };
@@ -129,7 +157,7 @@ for(var y = 0; y < 5; y++) {
     return function() {
       var dtcBtn = (id); 
       $("#button").click(console.log(dtcBtn));
-function push(Ref){Ref.push({name: document.querySelector('#url').value})
+function push(Ref){Ref.push({link: document.querySelector('#url').value, tags: document.querySelector('#tags').value})
 contactForm.reset() + funcClose();}
       if(dtcBtn === 1){push(invRef)}
       else if(dtcBtn === 2){push(desRef)}
@@ -138,11 +166,6 @@ contactForm.reset() + funcClose();}
      };
   }(y));
 }
-
-//Hide loader when site is loaded
-$(window).on('load', hideLoader = () => {
-  console.log("loaded");
-  $('#loader-wrapper').delay(1000).fadeOut("slow")});
 
 //Animation on scroll initialization
 AOS.init({

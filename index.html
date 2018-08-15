@@ -13,6 +13,7 @@ window.applicationCache.status    // Aufgefrischt?
 window.applicationCache.swapCache // neuen Cache einspielen
 </script>
 
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js"></script>
 <head>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -53,6 +54,11 @@ gif="http://loading.io/assets/img/default-loader.gif">
 
 <!--Document stylesheet-->
 <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />   
+
+<link rel="stylesheet" href="jQuery-tagEditor-master/jquery.tag-editor.css" type="text/css" media="screen" />   
+<script src="jQuery-tagEditor-master/jquery.tag-editor.js"></script>
+<script src="jQuery-tagEditor-master/jquery.caret.min.js"></script>
+
 <div id="loader-wrapper">
     <div id="loader"></div>
 
@@ -68,16 +74,13 @@ gif="http://loading.io/assets/img/default-loader.gif">
 
 <script>
     addToHomescreen();
-    </script>
+</script>
 
 </head>
 
 <body> 
-
-<div id='output'>öasjfoiasjdfisodj</div>
-
 <!--Authentification formular-->
-    <div id="authfield">
+   <div id="authfield">
     <div class="authcontent">
         <h5>Hey, welcome to daily repost</h5>    
         <div class="msg">Please log-in or create an account</div>
@@ -100,10 +103,11 @@ gif="http://loading.io/assets/img/default-loader.gif">
             
     </div><!--/authcontent-->
     </div><!--/authfield-->
-
+  
     <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="btnlogout">
       Log-out </button>
-
+    
+    
     <!--Addbutton for new posts-->
     <button id="show" class="show mdl-button mdl-js-button mdl-button--fab" onclick="funcShow(this); + funcHide(this);">
     <i class="material-icons">add</i>
@@ -121,6 +125,9 @@ gif="http://loading.io/assets/img/default-loader.gif">
     <input class="mdl-textfield__input" id="url" type="url" required name="url" class="input" value="">
     <label class="mdl-textfield__label" for="sample3">Share a great post...</label>
     </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <input class="mdl-textfield__input" id="tags" type="string" required name="tags" class="tags" value="">
+      </div>
     </form>
      <div class="category">
      <button id="button" class="f f1" >innovation</button>
@@ -133,8 +140,8 @@ gif="http://loading.io/assets/img/default-loader.gif">
           
     </div><!--/Overlay-->
 <!--<button id="btntest" onclick = "displayLoginBox()">check</button>-->
-  <div id="content" class="listcontent inactiveLink">
-  </div>    
+<div id="content" class="listcontent inactiveLink">
+</div>    
    
 
 <!-- Contacts Store JavaScript -->
@@ -146,8 +153,6 @@ gif="http://loading.io/assets/img/default-loader.gif">
 </body>
 
 <!--Service-worker script-->
-
-
 <script>
     /*if ('serviceWorker' in navigator) {
       console.log("Will the service worker register?");
