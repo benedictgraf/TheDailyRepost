@@ -1,9 +1,9 @@
 //Change forLoops to for of
 //Hide loader when site is loaded
-$(window).on('load', hideLoader = () => {
+/*$(window).on('load', hideLoader = () => {
   console.log("loaded");
   $('#loader-wrapper').delay(1000).fadeOut("slow")});
-
+*/
 let invRef = database.ref('innovation');
 let desRef = database.ref('design');
 let tecRef = database.ref('tech');
@@ -21,11 +21,9 @@ ref[j].on("child_added", function(snapshot, prevChildKey) {
     card.setAttribute('class', 'linkprev');
     $('#content').prepend($(card));
     card.append(newPost.link);
-  
-    $(document).ready(funcLinkPrev = () => {
-      document.guteUrls.execute('linkprev');
-    })
 
+    document.guteUrls.execute('linkprev');
+    
 });
 /*
 ref[j].limitToLast(20).on('child_added', funcSnap = (snap) => {

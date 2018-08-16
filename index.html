@@ -36,11 +36,15 @@ firebase.initializeApp(config);
 var database = firebase.database();  
 </script>
 
+
 <!-- Linkpreview API -->
-<script 
+<script
 async src="https://guteurls.de/guteurls.js"
 selector='.linkprev'
-gif="http://loading.io/assets/img/default-loader.gif">
+gif="http://loading.io/assets/img/default-loader.gif"
+callback-a="(function(jqueryElement,url,$){console.log('url:'+url)})"
+callback="(function($){$('#loader-wrapper').fadeOut()})"
+init="(function($){console.log('JS will start to search URLs now')})">
 </script>
 
 <!--material-design lib-->
