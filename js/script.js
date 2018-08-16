@@ -13,31 +13,39 @@ for(let j = 0; j < ref.length; j++)
 
 ref[j].limitToLast(20).on('value', funcSnap = (snap) => {
   snap.forEach(funcSnapEach = (snapshot) => {
-  childDataLink = snapshot.val().link;
-  card = document.createElement('a');
+    dbData = snapshot.key;
+    //console.log(dbData);
+    card = document.createElement('div');
     card.setAttribute('class', 'linkprev');
-    card.setAttribute('data-aos', 'fade-up');
-    card.setAttribute('data-aos-easing','ease-in-back');
-    //card.setAttribute('href', this.val  );
-    console.log(snapshot.val());
+    $('#content').prepend($(card));
 
+    dbDataLink = snapshot.val().link;
+    console.log("dbDataLink: " + dbDataLink);
+    dbDataTags = snapshot.val().tags;
+    console.log("dbDataTags: " + dbDataTags);
 
-  $('#content').prepend($(card));
-  postLink = document.createElement('div');
+    $('.linkprev').append(dbDataLink);
+    $('.linkprev').append(dbDataTags);
+
+    $(document).ready(funcLinkPrev = () => {
+      document.guteUrls.execute('linkprev');
+    })
+
+  });
+    
+
+    /*
+    postLink = document.createElement('div');
     postLink.setAttribute('class', 'postLink');
-    postLink.innerHTML = childDataLink;
-  card.appendChild(postLink);
+    postLink.innerHTML = snapshot.val().link;
+    card.appendChild(postLink);
 
-  childDataTags = snapshot.val().tags;
-  postTags = document.createElement('div');
-  postTags.setAttribute('class', 'postTags');
-  postTags.innerHTML = childDataTags;
-card.appendChild(postTags);
-});
+    postTags = document.createElement('div');
+    postTags.setAttribute('class', 'postTags');
+    postTags.innerHTML = childDataTags;
+    card.appendChild(postTags);
+    */
 
-  $(document).ready(funcLinkPrev = () => {
-    document.guteUrls.execute('linkprev');
-  })
 });
 
 let txtEmail = document.querySelector('#txtEmail');
