@@ -11,7 +11,24 @@ let worRef = database.ref('work');
 let ref = [invRef, desRef, tecRef, worRef];
 for(let j = 0; j < ref.length; j++)
 
-ref[j].limitToLast(20).on('value', funcSnap = (snap) => {
+ref[j].on("child_added", function(snapshot, prevChildKey) {
+  var newPost = snapshot.val();
+  console.log("Link: " + newPost.link);
+  console.log("Tag: " + newPost.tags);
+  console.log("Previous Post ID: " + prevChildKey);
+
+  card = document.createElement('div');
+    card.setAttribute('class', 'linkprev');
+    $('#content').prepend($(card));
+    card.append(newPost.link);
+  
+    $(document).ready(funcLinkPrev = () => {
+      document.guteUrls.execute('linkprev');
+    })
+
+});
+/*
+ref[j].limitToLast(20).on('child_added', funcSnap = (snap) => {
   snap.forEach(funcSnapEach = (snapshot) => {
     dbData = snapshot.key;
     //console.log(dbData);
@@ -19,20 +36,20 @@ ref[j].limitToLast(20).on('value', funcSnap = (snap) => {
     card.setAttribute('class', 'linkprev');
     $('#content').prepend($(card));
 
-    dbDataLink = snapshot.val().link;
-    console.log("dbDataLink: " + dbDataLink);
-    dbDataTags = snapshot.val().tags;
-    console.log("dbDataTags: " + dbDataTags);
+    dbDataLink = snapshot.val();
+    //console.log("dbDataLink: " + dbDataLink);
+    //dbDataTags = snapshot.val().tags;
+    //console.log("dbDataTags: " + dbDataTags);
 
     $('.linkprev').append(dbDataLink);
-    $('.linkprev').append(dbDataTags);
+    //$('.linkprev').append(dbDataTags);
 
     $(document).ready(funcLinkPrev = () => {
       document.guteUrls.execute('linkprev');
     })
 
   });
-    
+  */
 
     /*
     postLink = document.createElement('div');
@@ -46,7 +63,7 @@ ref[j].limitToLast(20).on('value', funcSnap = (snap) => {
     card.appendChild(postTags);
     */
 
-});
+// });
 
 let txtEmail = document.querySelector('#txtEmail');
 let txtPassword = document.querySelector('#txtPassword');
