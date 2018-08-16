@@ -11,22 +11,30 @@ let worRef = database.ref('work');
 let ref = [invRef, desRef, tecRef, worRef];
 for(let j = 0; j < ref.length; j++)
 
-ref[j].limitToLast(20).on('child_added', funcSnap = (snap) => {
-  snap.forEach(funcSnapEach = (childSnapshot) => {
-  let childData = childSnapshot.val();
-  let card = document.createElement('a');
+ref[j].limitToLast(20).on('value', funcSnap = (snap) => {
+  snap.forEach(funcSnapEach = (snapshot) => {
+  childDataLink = snapshot.val().link;
+  card = document.createElement('a');
     card.setAttribute('class', 'linkprev');
     card.setAttribute('data-aos', 'fade-up');
     card.setAttribute('data-aos-easing','ease-in-back');
     //card.setAttribute('href', this.val  );
+    console.log(snapshot.val());
+
 
   $('#content').prepend($(card));
-  let cardtitle = document.createElement('div');
-    cardtitle.setAttribute('class', 'cardtitle');
-    cardtitle.innerHTML = childData;
-  card.appendChild(cardtitle);
-  });
- 
+  postLink = document.createElement('div');
+    postLink.setAttribute('class', 'postLink');
+    postLink.innerHTML = childDataLink;
+  card.appendChild(postLink);
+
+  childDataTags = snapshot.val().tags;
+  postTags = document.createElement('div');
+  postTags.setAttribute('class', 'postTags');
+  postTags.innerHTML = childDataTags;
+card.appendChild(postTags);
+});
+
   $(document).ready(funcLinkPrev = () => {
     document.guteUrls.execute('linkprev');
   })
@@ -116,47 +124,32 @@ let mailval = mailpattern.test(mailvalselect.value);
 $(".cardtitle").click(console.log(this));
 
 //tags & tag-editor
-$(function(){
-  var sampleTags = ['c++', 'java', 'php', 'coldfusion', 'javascript', 'asp', 'ruby', 'python', 'c', 'scala', 'groovy', 'haskell', 'perl', 'erlang', 'apl', 'cobol', 'go', 'lua'];
-
-  $('#singleFieldTags').tagit({
-      availableTags: sampleTags,
-      // This will make Tag-it submit a single form value, as a comma-delimited field.
-      singleField: true,
-      singleFieldNode: $('#mySingleField')
+//Create spans by adding tags and get the values of all spans & tag-editor
+$("#button").click(function(){
+  $(".tagval").each(function(){
+    tagValue = $(this).text();
+    console.log("tagValue is:" + tagValue);
   });
 });
 
-var lists = document.getElementsByTagName("ul");
-for (var i = 0; i < lists.length; ++i) {
-    // filter so that only lists with the class "foo" are counted
-    console.log(lists[i]); 
-    var items = lists[i].getElementsByTagName("li");
-    console.log(items);
-        for (var j = 0; j < items.length; ++j) {
-            // do something with items[j]
-            console.log(j);
-        }
-    }
+//Try to get all values (not just the last tag-value entered)
+tagValueAll =  $(".tagval").each(function(){
+  tagValue = $(this).text()});
 
-    $('ul li').each(function(i)
-{
-   console.log($(this).value); // This is your rel value
-});
+//$("#button").click(function(){
+//  console.log("getTagValue: " + getTagVal);});
 
 //push data to specific location in firebase
-var push = function(j){j.push({link: document.querySelector('#url').value})
+var push = function(j){j.push({link: document.querySelector('#url').value, tags: tagValue})
 };
-
-console.log($('#singleFieldTags').tagit('assignedTags'));
 
 for(var y = 0; y < 5; y++) {
   $(".f" + y).click(function(id) {
     return function() {
       var dtcBtn = (id); 
       $("#button").click(console.log(dtcBtn));
-      function push(Ref){Ref.push({link: document.querySelector('#url').value})
-      contactForm.reset() + funcClose();}
+      function push(Ref){Ref.push({link: document.querySelector('#url').value, tags: tagValue})
+      contactForm.reset() + $('#tags').importTags('') + funcClose();}
       if(dtcBtn === 1){push(invRef)}
       else if(dtcBtn === 2){push(desRef)}
       else if(dtcBtn === 3){push(tecRef)}

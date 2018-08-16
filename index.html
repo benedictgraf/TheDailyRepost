@@ -18,6 +18,7 @@ window.applicationCache.swapCache // neuen Cache einspielen
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
@@ -54,11 +55,9 @@ gif="http://loading.io/assets/img/default-loader.gif">
 <!--Document stylesheet-->
 <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />   
 
-<link href="css/jquery.tagit.css" rel="stylesheet" type="text/css">
-<link href="css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
-
-<script src="js/tag-it.js" type="text/javascript" charset="utf-8"></script>
-
+<!--Tagfunctionality-->
+<script src="js/jquery.tagsinput.js"></script>
+<link rel="stylesheet" type="text/css" href="css/jquery.tagsinput.css" />
 
 <div id="loader-wrapper">
     <div id="loader"></div>
@@ -96,7 +95,7 @@ gif="http://loading.io/assets/img/default-loader.gif">
             <div class="mdl-textfield mdl-js-textfield">
             <input class="mdl-textfield__input" type="password" id="txtPassword" placeholder="password">
             </div>
-          </form>
+      </form>
 
           <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="btnlogin">
             Log-in </button>
@@ -126,8 +125,7 @@ gif="http://loading.io/assets/img/default-loader.gif">
     <input class="mdl-textfield__input" id="url" type="url" required name="url" class="input" value="">
     <label class="mdl-textfield__label" for="sample3">Share a great post...</label>
     </div>
-    <input name="tags" id="mySingleField" value="Apple, Orange" disabled="false"> <!-- only disabled for demonstration purposes -->
-    <ul id="singleFieldTags"></ul>
+    <input name="tags" id="tags" value=""/>
     </form>
     
     <div class="category">
@@ -147,6 +145,7 @@ gif="http://loading.io/assets/img/default-loader.gif">
 <!-- Contacts Store JavaScript -->
 <script src="js/script.js"></script>   
 <script src="js/signupform.js"></script>   
+<script>$('#tags').tagsInput();</script>
 
 </body>
 
