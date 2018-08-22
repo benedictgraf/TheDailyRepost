@@ -1,26 +1,24 @@
 <!DOCTYPE html>
 <html manifest="cache.appcache" lang="en">
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>the daily repost – a front end publishing platform</title>
 <!--Webapp manifest-->
 <link rel="manifest" href="webapp/manifest.json">    
 <script src="https://cdn.rawgit.com/GoogleChrome/pwacompat/v1.0.3/pwacompat.min.js"></script>
 
 <!--Caching manifest-->
 <script>
-window.applicationCache.update(); // versucht, den Application Chache aufzufrischen
-window.applicationCache.status    // Aufgefrischt?
-window.applicationCache.swapCache // neuen Cache einspielen
+window.applicationCache.update(); // try to refresh the cache
+window.applicationCache.status    // refreshed?
+window.applicationCache.swapCache // set new cache
 </script>
 
-<head>
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>the daily repost</title>
-
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- firebase -->
 <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
 <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-auth.js"></script>
 <script>
@@ -39,13 +37,18 @@ var database = firebase.database();
 
 <!-- Linkpreview API -->
 <script
-async src="https://guteurls.de/guteurls.js"
+src="https://guteurls.de/guteurls.js"
 selector='.linkprev'
 gif="http://loading.io/assets/img/default-loader.gif"
 callback-a="(function(jqueryElement,url,$){console.log('url:'+url)})"
 callback="(function($){$('#loader-wrapper').fadeOut()})"
 init="(function($){console.log('JS will start to search URLs now')})">
+
 </script>
+<!-- -->
+
+
+
 
 <!--material-design lib-->
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">

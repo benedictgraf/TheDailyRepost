@@ -1,9 +1,7 @@
 //Change forLoops to for of
-//Hide loader when site is loaded
-/*$(window).on('load', hideLoader = () => {
-  console.log("loaded");
-  $('#loader-wrapper').delay(1000).fadeOut("slow")});
-*/
+//$("#loader-wrapper").hide();
+
+
 let invRef = database.ref('innovation');
 let desRef = database.ref('design');
 let tecRef = database.ref('tech');
@@ -12,19 +10,23 @@ let ref = [invRef, desRef, tecRef, worRef];
 for(let j = 0; j < ref.length; j++)
 
 ref[j].on("child_added", function(snapshot, prevChildKey) {
-  var newPost = snapshot.val();
-  console.log("Link: " + newPost.link);
-  console.log("Tag: " + newPost.tags);
-  console.log("Previous Post ID: " + prevChildKey);
 
-  card = document.createElement('div');
+  var newPost = snapshot.val();
+
+  let card = document.createElement('div');
     card.setAttribute('class', 'linkprev');
     $('#content').prepend($(card));
     card.append(newPost.link);
+    guteUrls.execute();
 
-    document.guteUrls.execute('linkprev');
-    
+  console.log("Link: " + newPost.link);
+  console.log("Tag: " + newPost.tags);
+  console.log("Previous Post ID: " + prevChildKey);
 });
+
+  
+
+
 /*
 ref[j].limitToLast(20).on('child_added', funcSnap = (snap) => {
   snap.forEach(funcSnapEach = (snapshot) => {
@@ -181,6 +183,12 @@ for(var y = 0; y < 5; y++) {
   }(y));
 }
 
+for (elements of $(".category")){
+  nav = document.createElement('div');
+  nav.setAttribute('class', 'nav');
+  $('head').append($(nav));
+  card.append("this");
+}
 //Animation on scroll initialization
 AOS.init({
   easing: 'ease-in-out-sine'
